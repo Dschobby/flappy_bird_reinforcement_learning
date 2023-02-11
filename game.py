@@ -246,15 +246,3 @@ class Game:
         self.train = False
         
         print("Training finished after {} episodes".format(episode + 1))
-
-
-
-
-
-
-
-
-
-
-
-
