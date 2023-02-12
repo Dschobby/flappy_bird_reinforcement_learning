@@ -22,7 +22,8 @@ game.train_agent("draw_game", episodes, batches_per_episode, hyperparameters)
 The game environment returns three features as input for the DQN agent:
 - Horizontal distance to next pipe
 - Vertical distance to lower next pipe
-- Speed of bird__
+- Speed of bird
+
 The returned reward from the environment after performing an action is either 0.1 for surviving or -10 for colliding.__
 The whole states/rewards are stored in an experience buffer of the agent used for training after each episode.__
 The DQN agents architecture is a neural network with one hidden layer of size 128.
