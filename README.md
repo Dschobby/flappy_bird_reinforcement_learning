@@ -16,7 +16,7 @@ game.main(draw = "True")
 ```
 If using a DQN agent one can train with
 ```python
-game.train_agent(draw = "True", episodes = 100, batches = 100, hyperparameters)
+game.train_agent(draw = "False", episodes = 100, batches = 100, hyperparameters)
 ```
 
 ## Deep Q-learning setup
