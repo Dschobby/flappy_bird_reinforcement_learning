@@ -24,9 +24,11 @@ The game environment returns three features as input for the DQN agent:
 - Vertical distance to lower next pipe
 - Speed of bird
 
-The returned reward from the environment after performing an action is either 0.1 for surviving or -10 for colliding.<br />
-The whole states/rewards are stored in an experience buffer of the agent used for training after each episode.
+The returned reward from the environment after performing an action is:
+- 0.1 for surviving 
+- -10 for colliding
 
+The whole states/rewards are stored in an experience buffer of the agent used for training after each episode.<br />
 The DQN agents architecture is a neural network with one hidden layer of size 128.
 
 ## Trained DQN agent example
