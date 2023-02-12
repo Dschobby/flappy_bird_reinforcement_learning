@@ -27,6 +27,9 @@ The returned reward from the environment after performing an action is either 0.
 The whole states/rewards are stored in an experience buffer of the agent used for training after each episode.__
 The DQN agents architecture is a neural network with one hidden layer of size 128.
 
+## Trained DQN agent example
+![](https://github.com/Dschobby/flappy_bird_reinforcement_learning/blob/main/animations/flappy_bird_animation.gif)
+
 ## Required packages
 - numpy
 - pytorch
