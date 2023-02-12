@@ -7,7 +7,7 @@ Additionally the code provides a procedure for training the DQN agent.
 
 The game and its agent is run by initializing with
 ```python
-game = game.Game("agent_name", "computing devide")
+game = game.Game("agent_name", "computing_device")
 ```
 To run a game execute the main function
 ```python
