@@ -31,7 +31,7 @@ The agent has two possible actions:
 - bump the bird
 - doing nothing
 
-The whole states/rewards/actions are stored in an experience buffer of the agent used for training after each episode.<br />
+The whole states/rewards/actions are stored in an experience buffer of the agent used for training after each episode. During the training procedure the agent uses the $\epsilon$-greedy policy with decreasing $\epsilon$.<br />
 The DQN agents architecture is a neural network with one hidden layer of size 128.
 
 ## Trained DQN agent example
