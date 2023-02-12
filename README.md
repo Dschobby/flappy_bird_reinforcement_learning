@@ -3,6 +3,7 @@ This code provides an environment for the game flappy. The game can be run using
 - User agent: User played game (bump bird with space)
 - Random agent: Agent which performs random actions
 - DQN agent: Agent using a deep Q-Network for performing actions
+
 Additionally the code provides a procedure for training the DQN agent.
 
 The game and its agent is run by initializing with
