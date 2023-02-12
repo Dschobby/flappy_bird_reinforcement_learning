@@ -35,6 +35,7 @@ The whole states/rewards/actions are stored in an experience buffer of the agent
 The DQN agents architecture is a neural network with one hidden layer of size 128.
 
 ## Trained DQN agent example
+Example of trained DQN agent using $\gamma$
 ![](https://github.com/Dschobby/flappy_bird_reinforcement_learning/blob/main/animations/flappy_bird_animation.gif)
 
 ## Required packages
