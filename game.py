@@ -11,8 +11,6 @@ import agents.user_agent, agents.random_agent, agents.dqn_agent
 
 
 
-
-
 #Agents
 AGENTS = ["user_agent", "random_agent", "dqn_agent"]
 
@@ -25,9 +23,6 @@ ground_image = pygame.image.load('assets/base.png')
 ground_image = pygame.transform.scale(ground_image, (GROUND_WIDHT, GROUND_HEIGHT))
 BACKGROUND = pygame.image.load('assets/background-day.png')
 BACKGROUND = pygame.transform.scale(BACKGROUND, (SCREEN_WIDHT, SCREEN_HEIGHT))
-
-
-
 
 
 
@@ -117,8 +112,9 @@ class Game:
     def game_state(self):
         state = []
 
+        #Gamestate passing to the agent: 1-horizontal distance to next pipe, 2-vertical distance to lower next pipe, 3-bird speed
         for pipe in self.pipes:
-            if vars(self.bird)["pos"][0] < vars(pipe)["pos"][0] + vars(pipe)["pos"][2]:
+            if vars(self.bird)["pos"][0] < vars(pipe)["pos"][0] + vars(pipe)["pos"][2]: #Check which pipe is the next one
                 state.append((- vars(self.bird)["pos"][0] + vars(pipe)["pos"][2] + vars(pipe)["pos"][0]) / PIPE_DISTANCE)
                 state.append((vars(pipe)["pos"][1] - PIPE_GAP/2 - vars(self.bird)["pos"][1] - vars(self.bird)["pos"][3] / 2) / SCREEN_HEIGHT * 2)
                 break
@@ -140,6 +136,7 @@ class Game:
         if draw:
             pygame.init()
             screen = pygame.display.set_mode((SCREEN_WIDHT, SCREEN_HEIGHT))
+            pygame.display.set_icon(bird_image)
             pygame.display.set_caption('Flappy Bird')
             clock = pygame.time.Clock()
 
@@ -194,7 +191,7 @@ class Game:
 
                 pygame.display.update()
 
-            #Terminate episode after reaching score of 500
+            #Terminate episode after reaching score of 100
             if self.score >= 100:
                 active_episode = False
 
