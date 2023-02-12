@@ -8,15 +8,15 @@ Additionally the code provides a procedure for training the DQN agent using rein
 
 The game and its agent is run by initializing with
 ```python
-game = game.Game(agent_name="dqn_agent", device="cpu")
+game = game.Game(agent_name = "dqn_agent", device = "cpu")
 ```
 To run a game execute the main function
 ```python
-game.main(draw="True")
+game.main(draw = "True")
 ```
 If using a DQN agent one can train with
 ```python
-game.train_agent("draw_game", episodes, batches_per_episode, hyperparameters)
+game.train_agent(draw = "True", episodes = 100, batches = 100, hyperparameters)
 ```
 
 ## Deep Q-learning setup
