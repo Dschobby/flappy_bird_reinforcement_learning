@@ -1,6 +1,6 @@
 # Flappy bird reinforcement learning agent
 This code provides an environment for the game flappy. The game can be run using different agents:
-- User agent: User played game
+- User agent: User played game (bump bird with space)
 - Random agent: Agent which performs random actions
 - DQN agent: Agent using a deep Q-Network for performing actions
 Additionally the code provides a procedure for training the DQN agent.
@@ -28,7 +28,11 @@ The returned reward from the environment after performing an action is:
 - 0.1 for surviving 
 - -10 for colliding
 
-The whole states/rewards are stored in an experience buffer of the agent used for training after each episode.<br />
+The agent has two possible actions:
+- bump the bird
+- doing nothing
+
+The whole states/rewards/actions are stored in an experience buffer of the agent used for training after each episode.<br />
 The DQN agents architecture is a neural network with one hidden layer of size 128.
 
 ## Trained DQN agent example
