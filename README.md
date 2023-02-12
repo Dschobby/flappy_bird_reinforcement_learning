@@ -4,7 +4,7 @@ This code provides an environment for the game flappy. The game can be run using
 - Random agent: Agent which performs random actions
 - DQN agent: Agent using a deep Q-Network for performing actions
 
-Additionally the code provides a procedure for training the DQN agent.
+Additionally the code provides a procedure for training the DQN agent using reinforcement learning.
 
 The game and its agent is run by initializing with
 ```python
