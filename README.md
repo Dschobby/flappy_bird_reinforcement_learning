@@ -1,5 +1,5 @@
 # Flappy bird reinforcement learning agent
-This code provides an environment for the game flappy. The game can be run using different agents:
+This code provides an environment for the game flappy bird. The game can be run using different agents:
 - User agent: User played game (bump bird with space)
 - Random agent: Agent which performs random actions
 - DQN agent: Agent using a deep Q-Network for performing actions
@@ -8,11 +8,11 @@ Additionally the code provides a procedure for training the DQN agent using rein
 
 The game and its agent is run by initializing with
 ```python
-game = game.Game("agent_name", "computing_device")
+game = game.Game(agent_name="dqn_agent", device="cpu")
 ```
 To run a game execute the main function
 ```python
-game.main("draw_game")
+game.main(draw="True")
 ```
 If using a DQN agent one can train with
 ```python
