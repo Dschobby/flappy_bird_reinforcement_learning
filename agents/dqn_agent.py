@@ -54,7 +54,7 @@ class DQN_agent:
     def train(self):
         #Check buffer size
         if len(self.buffer[0]) < self.batch_size:
-            return 
+            return 0
         #Delete old data from buffer if buffer size is surpassed
         if len(self.buffer[0]) > self.buffer_size:
             del self.buffer[0][0:len(self.buffer[0])-self.buffer_size]
@@ -85,6 +85,3 @@ class DQN_agent:
         self.optimizer.step()
 
         return loss.item()
-
-
-

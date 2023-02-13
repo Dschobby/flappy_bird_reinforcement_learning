@@ -4,8 +4,8 @@ import pygame
 from pygame.locals import *
 import random
 import sys
+import time
 import numpy as np
-from tqdm import tqdm
 import torch
 import agents.user_agent, agents.random_agent, agents.dqn_agent
 
@@ -68,7 +68,7 @@ class Game:
         self.turn = 0
 
         #Initialize pipes
-        for i in range(2):
+        for i in range(3):
             #Pipe initial positions
             xpos = PIPE_DISTANCE * i + PIPE_DISTANCE
             ysize = random.randint(200, 300)
@@ -86,7 +86,7 @@ class Game:
             del self.pipes[0]
 
             #New pipe initial positions
-            xpos = PIPE_DISTANCE * 2 - 100
+            xpos = PIPE_DISTANCE * 3 - 100
             ysize = random.randint(150, 350)
 
             #Append new pipes
@@ -204,19 +204,26 @@ class Game:
 
         
     def train_agent(self, draw, episodes, batches, hyperparameter):
-
+        
+        #Training control parameters
         convergence = 0 #parameter controlling if convergence happened
+        loss = 0
+        mean_score = []
+        time_start = time.time()
+
+        #Print training initials
         print("Start training process of agent")
         if self.device == "cuda": print("Using {} device".format(self.device), ": ", torch.cuda.get_device_name(0))
         else: print("Using {} device".format(self.device))
         print("Used training hyperparameters: ",hyperparameter)
 
+        #Check if agent is trainable
         if not isinstance(self.agent, agents.dqn_agent.DQN_agent):
             sys.exit("Agent is not trainable")
 
         self.train = True
 
-        for episode in tqdm(range(episodes)):
+        for episode in range(episodes):
 
             #Specify episode lr and epsilon
             eps = hyperparameter["eps_end"] + (hyperparameter["eps_start"] - hyperparameter["eps_end"]) * np.exp(-1. * episode /episodes * 10)
@@ -231,15 +238,32 @@ class Game:
             
             #Train agent
             for i in range(batches):
-                loss = self.agent.train()
-            
-            #Test if agent has learned the game perfectly
+                loss += self.agent.train()
+
+            #Test agent
             self.train = False
-            if self.main(False) == 100: convergence += 1
+            test_score = self.main(False)
+            mean_score.append(test_score)
+            if test_score == 100: convergence += 1 #look if agent has perfectly performed the game
             else: convergence = 0
-            if convergence == 3: break #if agent never collides after three training procedures in a row training terminates
+            
+            #Print training perfomance log
+            time_step = time.time()
+            if (episode % 10 == 0 and episode != 0) or convergence == 2: 
+                print("Episode: [{}/{}]".format(episode, episodes) + 
+                    "    -Time: [{}<{}]".format(time.strftime("%M:%S", time.gmtime(time_step-time_start)), time.strftime("%M:%S", time.gmtime((time_step-time_start) * episodes/episode))) +
+                    "    -Loss: {}".format(round(loss/batches,6)) + 
+                    "    -MeanTestScore: {}".format(round(np.mean(mean_score[-2:]))))
+                mean_score = []
+            loss = 0
+
+            #Terminate training if agent never collides after two training procedures in a row
+            if convergence == 2: 
+                print("Agent performed faultless")
+                break
             self.train = True
+
 
         self.train = False
         
-        print("Training finished after {} episodes".format(episode + 1))
+        print("Training finished after {} episodes".format(episode))

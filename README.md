@@ -42,4 +42,3 @@ Example of trained DQN agent using a training of 100 episodes each with 100 batc
 - numpy
 - pytorch
 - pygame
-- tqdm
