@@ -252,6 +252,7 @@ class Game:
             if episode % 10 == 0 or convergence == 2: 
                 print("Episode: [{}/{}]".format(episode, episodes) + 
                     "    -Time: [{}<{}]".format(time.strftime("%M:%S", time.gmtime(time_step-time_start)), time.strftime("%M:%S", time.gmtime((time_step-time_start) * episodes/episode))) +
+                    " {}s/it".format(round((time_step-time_start)/episode,1)) +
                     "    -Loss: {}".format(round(loss/batches,6)) + 
                     "    -MeanTestScore: {}".format(round(np.mean(mean_score[-2:]))))
                 mean_score = []
