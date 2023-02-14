@@ -11,7 +11,7 @@ hyperparameter = {
   "batch_size": 128,
   "gamma": 0.9,
   "eps_start": 0.9,
-  "eps_end": 1e-3
+  "eps_end": 1e-2
 }
     
 

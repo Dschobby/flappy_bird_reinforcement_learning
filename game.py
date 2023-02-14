@@ -223,7 +223,7 @@ class Game:
 
         self.train = True
 
-        for episode in range(episodes):
+        for episode in range(1, episodes + 1):
 
             #Specify episode lr and epsilon
             eps = hyperparameter["eps_end"] + (hyperparameter["eps_start"] - hyperparameter["eps_end"]) * np.exp(-1. * episode /episodes * 10)
@@ -249,7 +249,7 @@ class Game:
             
             #Print training perfomance log
             time_step = time.time()
-            if (episode % 10 == 0 and episode != 0) or convergence == 2: 
+            if episode % 10 == 0 or convergence == 2: 
                 print("Episode: [{}/{}]".format(episode, episodes) + 
                     "    -Time: [{}<{}]".format(time.strftime("%M:%S", time.gmtime(time_step-time_start)), time.strftime("%M:%S", time.gmtime((time_step-time_start) * episodes/episode))) +
                     "    -Loss: {}".format(round(loss/batches,6)) + 
